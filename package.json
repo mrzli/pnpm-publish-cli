@@ -1,0 +1,66 @@
+{
+  "name": "@gmjs/pnpm-publish-cli",
+  "version": "0.0.1",
+  "description": "pnpm-publish-cli",
+  "author": {
+    "name": "Goran Mržljak",
+    "email": "goran.mrzljak@gmail.com",
+    "url": "https://mrzli.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "npm",
+    "pnpm",
+    "publishing",
+    "package",
+    "library",
+    "pnpm-publish"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrzli/pnpm-publish-cli"
+  },
+  "homepage": "https://github.com/mrzli/pnpm-publish-cli",
+  "main": "src/index.js",
+  "bin": {
+    "pnpmpub": "src/index.js"
+  },
+  "scripts": {
+    "dev": "ts-node src/run.ts",
+    "lint": "eslint --fix . && prettier --write .",
+    "lint:nofix": "eslint . && prettier --check .",
+    "test-only": "jest --passWithNoTests",
+    "test": "pnpm run lint && pnpm run test-only",
+    "clean": "shx rm -rf ./dist",
+    "build-only": "pnpm run clean && tsc --project tsconfig.lib.json",
+    "build": "pnpm run test && pnpm run build-only",
+    "pub-only": "node publish.js",
+    "pub": "npm run build && npm run pub-only"
+  },
+  "dependencies": {
+    "@gmjs/exec-observable": "^0.0.3",
+    "@gmjs/fs-async": "^0.0.5",
+    "@gmjs/package-json": "^0.0.2",
+    "ajv": "^8.16.0",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.4.2",
+    "rxjs": "^7.8.1",
+    "tslib": "^2.6.3"
+  },
+  "devDependencies": {
+    "@gmjs/eslint-config": "^0.0.37",
+    "@jest/globals": "^29.7.0",
+    "@types/fs-extra": "^11.0.4",
+    "eslint": "^9.5.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.2",
+    "shx": "^0.3.4",
+    "ts-jest": "^29.1.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.2"
+  },
+  "engines": {
+    "node": ">=22.3.0"
+  }
+}
