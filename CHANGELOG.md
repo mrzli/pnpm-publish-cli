@@ -4,6 +4,12 @@ All notable changes to the "pnpm-publish-cli" will be documented in this file.
 
 ## [Unreleased]
 
+## [0.0.2] - 2024-06-27
+
+### Changed
+
+- Rename `pac` command to `pack`.
+
 ## [0.0.1] - 2024-06-27
 
 ### Added
