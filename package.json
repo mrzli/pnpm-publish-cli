@@ -1,6 +1,6 @@
 {
   "name": "@gmjs/pnpm-publish-cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "pnpm-publish-cli",
   "author": {
     "name": "Goran Mržljak",
@@ -26,7 +26,7 @@
     "pnpmpub": "src/index.js"
   },
   "scripts": {
-    "dev": "ts-node src/run.ts",
+    "dev": "ts-node src/_local/run-local.ts",
     "lint": "eslint --fix . && prettier --write .",
     "lint:nofix": "eslint . && prettier --check .",
     "test-only": "jest --passWithNoTests",
