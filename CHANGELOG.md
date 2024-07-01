@@ -4,6 +4,12 @@ All notable changes to the "pnpm-publish-cli" will be documented in this file.
 
 ## [Unreleased]
 
+## [0.0.4] - 2024-07-01
+
+### Changed
+
+- Fix an issue with publish on Windows.
+
 ## [0.0.3] - 2024-07-01
 
 ### Changed

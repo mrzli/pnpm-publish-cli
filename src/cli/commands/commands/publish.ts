@@ -48,7 +48,10 @@ export async function publish(config: Config): Promise<void> {
     ...(dryRun ? ['--dry-run'] : []),
   ];
 
-  await exec(isWindows() ? 'pnpm.cmd' : 'pnpm', npmArgs, { cwd: publishDir });
+  await exec(isWindows() ? 'pnpm.cmd' : 'pnpm', npmArgs, {
+    cwd: publishDir,
+    shell: true,
+  });
 }
 
 function isWindows(): boolean {
