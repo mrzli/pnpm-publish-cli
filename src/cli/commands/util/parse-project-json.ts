@@ -6,7 +6,7 @@ export function parseProjectJson(content: string): ProjectJson {
   const isValid = validateProjectJson(projectJson);
   if (!isValid) {
     console.error(validateProjectJson.errors);
-    throw new Error('Invalid instruments data.');
+    throw new Error('Invalid publish config data.');
   }
 
   return projectJson;

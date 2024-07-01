@@ -1,6 +1,6 @@
 {
   "name": "@gmjs/pnpm-publish-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "pnpm-publish-cli",
   "author": {
     "name": "Goran Mržljak",
@@ -52,6 +52,7 @@
     "@gmjs/eslint-config": "^0.0.37",
     "@jest/globals": "^29.7.0",
     "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.14.9",
     "eslint": "^9.5.0",
     "jest": "^29.7.0",
     "prettier": "^3.3.2",
@@ -62,5 +63,6 @@
   },
   "engines": {
     "node": ">=22.3.0"
-  }
+  },
+  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
 }

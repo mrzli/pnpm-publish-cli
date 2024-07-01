@@ -4,6 +4,12 @@ All notable changes to the "pnpm-publish-cli" will be documented in this file.
 
 ## [Unreleased]
 
+## [0.0.3] - 2024-07-01
+
+### Changed
+
+- Add new required CLI option, `-c, --config <path>`, to specify the path to the configuration file.
+
 ## [0.0.2] - 2024-06-27
 
 ### Changed

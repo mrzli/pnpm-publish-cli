@@ -1,9 +1,7 @@
 import { Command } from 'commander';
 import { lastValueFrom, tap } from 'rxjs';
-import fs from 'fs-extra';
 import { ExecOptions, fromExec } from '@gmjs/exec-observable';
-import { parseProjectJson } from '../util/parse-project-json';
-import { Config } from '../types';
+import { readProjectJson } from '../util';
 
 type OptionValue = boolean;
 type Options = Readonly<Record<string, OptionValue | undefined>>;
@@ -13,27 +11,33 @@ export function addCommandPublish(program: Command): Command {
     .command('pub')
     .alias('p')
     .description('Publish npm package.')
+    .requiredOption('-c, --config <config>', 'Config file')
     .option('--dry-run', 'Dry run (fake publish).')
     .action(action);
 
   return program;
 }
 
+interface Config {
+  readonly config: string;
+  readonly dryRun: boolean;
+}
+
 async function action(options: Options, _command: Command): Promise<void> {
   const config: Config = {
-    dryRun: options['dryRun'] ?? false,
+    config: (options['config'] as string | undefined)!,
+    dryRun: (options['dryRun'] as boolean | undefined) ?? false,
   };
 
   await publish(config);
 }
 
 export async function publish(config: Config): Promise<void> {
-  const { dryRun } = config;
+  const { config: configPath, dryRun } = config;
 
   console.log('Publishing...');
 
-  const projectJsonContent = await fs.readFile('project.json', 'utf8');
-  const projectJson = parseProjectJson(projectJsonContent);
+  const projectJson = await readProjectJson(configPath);
 
   const { publishDir } = projectJson.publish;
 

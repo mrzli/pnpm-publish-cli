@@ -2,7 +2,7 @@ import nodePath from 'node:path';
 import { Command } from 'commander';
 import { glob } from 'glob';
 import fs from 'fs-extra';
-import { parseProjectJson } from '../util/parse-project-json';
+import { readProjectJson } from '../util';
 
 type OptionValue = never;
 type Options = Readonly<Record<string, OptionValue | undefined>>;
@@ -12,20 +12,30 @@ export function addCommandPackage(program: Command): Command {
     .command('pack')
     .alias('a')
     .description('Package project.')
+    .requiredOption('-c, --config <config>', 'Config file')
     .action(action);
 
   return program;
 }
 
-async function action(_options: Options, _command: Command): Promise<void> {
-  await packageProject();
+interface Config {
+  readonly config: string;
 }
 
-export async function packageProject(): Promise<void> {
+async function action(options: Options, _command: Command): Promise<void> {
+  const config: Config = {
+    config: (options['config'] as string | undefined)!,
+  };
+
+  await packageProject(config);
+}
+
+export async function packageProject(config: Config): Promise<void> {
+  const { config: configPath } = config;
+
   console.log('Packaging...');
 
-  const projectJsonContent = await fs.readFile('project.json', 'utf8');
-  const projectJson = parseProjectJson(projectJsonContent);
+  const projectJson = await readProjectJson(configPath);
 
   const { publishDir, include } = projectJson.publish;
   await fs.ensureDir(publishDir);
