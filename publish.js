@@ -18,7 +18,10 @@ async function run() {
 
   const npmArgs = ['publish', '--access', 'public'];
 
-  await exec(isWindows() ? 'pnpm.cmd' : 'pnpm', npmArgs, { cwd: publishDir });
+  await exec(isWindows() ? 'pnpm.cmd' : 'pnpm', npmArgs, {
+    cwd: publishDir,
+    shell: true,
+  });
 }
 
 function isWindows() {

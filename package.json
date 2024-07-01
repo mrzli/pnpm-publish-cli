@@ -35,7 +35,7 @@
     "build-only": "pnpm run clean && tsc --project tsconfig.lib.json",
     "build": "pnpm run test && pnpm run build-only",
     "pub-only": "node publish.js",
-    "pub": "npm run build && npm run pub-only"
+    "pub": "pnpm run build && pnpm run pub-only"
   },
   "dependencies": {
     "@gmjs/exec-observable": "^0.0.3",
